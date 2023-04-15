@@ -13,6 +13,7 @@ import {
     PhotographerInformationObjectType,
     SimplePhotographerInformationObjectType
 } from "../DataType/User/Photographer/specification";
+import {LicenseInformationObjectType, SimpleLicenseInformationObjectType} from "../DataType/License/specification";
 
 export interface PixelColorInformationObjectType extends InformationObjectType {
 
@@ -40,15 +41,17 @@ export interface SimpleImageFileInformation extends SimpleFileTypeInformationObj
     2: number,
     // Replace blank pixel to color...
     3: SimplePixelColorInformationObjectType['key'] | boolean,
-    // You can fire or alert police or many action per unlicensed opened times... (violated after saw alert)
+    // You can fire or alert police or many actions per unlicensed opened times... (violated after saw alert)
     4: SimplePhotographerInformationObjectType | PhotographerInformationObjectType['key'],
-    // You can fire device or alert police or many action per did not allow take picture times... (violated after saw alert)
+    // You can fire device or alert police or many actions per did not allow take picture times... (violated after saw alert)
     5: SimpleTimeInformationObjectType | TimeInformationObjectType['key'],
-    // You can fire device or alert police or many action per did not allow take picture times... (violated after saw alert)
+    // You can fire device or alert police or many actions per did not allow take picture times... (violated after saw alert)
     6: SimpleLocationInformationObjectType | LocationInformationObjectType['key'],
-    // You can fire device or alert police or many action per did not allow take picture times... (violated after saw alert)
+    // You can fire device or alert police or many actions per did not allow take picture times... (violated after saw alert)
     7: SimpleDeviceInformationObjectType | DeviceInformationObjectType['key'],
-    8: SimpleMetaInformationObjectType[] | SimpleMetaInformationObjectType['key'],
+    // You can fire or alert police or many actions per unlicensed opened times... (violated after saw alert)
+    8: SimpleLicenseInformationObjectType | LicenseInformationObjectType['key'],
+    9: SimpleMetaInformationObjectType[] | SimpleMetaInformationObjectType['key'],
 }
 
 // Only can use key if data were registered.... (0, 1, 2, 3,... are just Array key)
@@ -58,13 +61,13 @@ export interface ImageInformation extends CommonFileInformationObjectType {
     2: number,
     // Replace blank pixel to color...
     3: PixelColorInformationObjectType | PixelColorInformationObjectType['key'] | boolean,
-    // You can fire device or alert police or many action per unlicensed opened times... (violated after saw alert)
+    // You can fire device or alert police or many actions per unlicensed opened times... (violated after saw alert)
     4: PhotographerInformationObjectType | PhotographerInformationObjectType['key'],
-    // You can fire device or alert police or many action per did not allow take picture times... (violated after saw alert)
+    // You can fire device or alert police or many actions per did not allow take picture times... (violated after saw alert)
     5: TimeInformationObjectType | TimeInformationObjectType['key'],
-    // You can fire device or alert police or many action per did not allow take picture times... (violated after saw alert)
+    // You can fire device or alert police or many actions per did not allow take picture times... (violated after saw alert)
     6: LocationInformationObjectType | LocationInformationObjectType['key'],
-    // You can fire device or alert police or many action per did not allow take picture times... (violated after saw alert)
-    7: DeviceInformationObjectType | DeviceInformationObjectType['key'],
-    8: MetaInformationObjectType[] | MetaInformationObjectType['key'],
+    // You can fire or alert police or many actions per unlicensed opened times... (violated after saw alert)
+    8: LicenseInformationObjectType | LicenseInformationObjectType['key'],
+    9: MetaInformationObjectType[] | MetaInformationObjectType['key'],
 }
