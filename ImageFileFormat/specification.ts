@@ -20,16 +20,6 @@ export interface SimplePixelColorInformationObjectType extends SimpleInformation
 
 }
 
-// Few data using to save data... we still can use full Information
-export interface SimpleMetaInformationObjectType extends SimpleInformationObjectType {
-
-}
-
-// It is up to user can add information they need...
-export interface MetaInformationObjectType extends InformationObjectType {
-    
-}
-
 // Only can use key if data were registered.... (0, 1, 2, 3,... are just Array key)
 export interface SimpleImageFileInformation extends SimpleCommonFileInformationObjectType {
     1: SimplePixelColorInformationObjectType['key'][],
@@ -43,7 +33,7 @@ export interface SimpleImageFileInformation extends SimpleCommonFileInformationO
 
 // Only can use key if data were registered.... (0, 1, 2, 3,... are just Array key)
 export interface ImageInformation extends CommonFileInformationObjectType {
-    1: PixelColorInformationObjectType[] | PixelColorInformationObjectType['key'],
+    1: PixelColorInformationObjectType[] | PixelColorInformationObjectType['key'][],
     // Width Information...
     2: number,
     // Replace blank pixel to color...
