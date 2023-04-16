@@ -6,13 +6,22 @@ import { SimpleTimeInformationObjectType, TimeInformationObjectType } from "../D
 import { LocationInformationObjectType, SimpleLocationInformationObjectType } from "../DataType/Location/specification";
 import { DeviceInformationObjectType, SimpleDeviceInformationObjectType } from "../DataType/Device/specification";
 import { LicenseInformationObjectType, SimpleLicenseInformationObjectType } from "../DataType/License/specification";
-import { MetaInformationObjectType, SimpleMetaInformationObjectType } from "../ImageFileFormat/specification";
 
 export interface SimpleFileTypeInformationObjectType extends SimpleInformationObjectType {
 
 }
 
 export interface FileTypeInformationObjectType extends InformationObjectType {
+
+}
+
+// Few data using to save data... we still can use full Information
+export interface SimpleMetaInformationObjectType extends SimpleInformationObjectType {
+
+}
+
+// It is up to user can add information they need...
+export interface MetaInformationObjectType extends InformationObjectType {
 
 }
 
@@ -40,12 +49,22 @@ export interface FileIdentityInformationObjectType {
     9: MetaInformationObjectType[] | MetaInformationObjectType['key'],
 }
 
-// Only can use key if data were registered.... we use combine feature in future
-export interface CommonFileInformationObjectType extends FileIdentityInformationObjectType {
+export interface CommonFileInformationDataOfIndexKeyObjectType extends SimpleFileTypeInformationObjectType {
+    0: FileTypeInformationObjectType | FileTypeInformationObjectType['key'],
+}
+
+export interface SimpleCommonFileInformationDataOfIndexKeyObjectType extends FileIdentityInformationObjectType {
     0: FileTypeInformationObjectType | FileTypeInformationObjectType['key'],
 }
 
 // Only can use key if data were registered.... we use combine feature in future
-export interface SimpleCommonFileInformationObjectType extends SimpleFileIdentityInformationObjectType {
-    0: SimpleFileTypeInformationObjectType | SimpleFileTypeInformationObjectType['key'],
+export interface CommonFileInformationObjectType extends InformationObjectType {
+    // @ts-ignore
+    [indexKey: InformationObjectType['key']]: CommonFileInformationDataOfIndexKeyObjectType | any
+}
+
+// Only can use key if data were registered.... we use combine feature in future
+export interface SimpleCommonFileInformationObjectType extends SimpleInformationObjectType {
+    // @ts-ignore
+    [indexKey: InformationObjectType['key']]: SimpleCommonFileInformationDataOfIndexKeyObjectType | any
 }

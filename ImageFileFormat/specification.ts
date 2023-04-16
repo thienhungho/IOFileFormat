@@ -3,7 +3,8 @@ import {
     SimpleInformationObjectType,
 } from "../UseFromIOSpecification/specification";
 import {
-    CommonFileInformationObjectType,
+    CommonFileInformationDataOfIndexKeyObjectType,
+    CommonFileInformationObjectType, SimpleCommonFileInformationDataOfIndexKeyObjectType,
     SimpleCommonFileInformationObjectType,
 } from "../FileType/specification";
 import {
@@ -20,8 +21,7 @@ export interface SimplePixelColorInformationObjectType extends SimpleInformation
 
 }
 
-// Only can use key if data were registered.... (0, 1, 2, 3,... are just Array key)
-export interface SimpleImageFileInformation extends SimpleCommonFileInformationObjectType {
+export interface SimpleImageInformationDataOfIndexKeyObjectType extends SimpleCommonFileInformationDataOfIndexKeyObjectType {
     1: SimplePixelColorInformationObjectType['key'][],
     // Width Information...
     2: number,
@@ -31,8 +31,7 @@ export interface SimpleImageFileInformation extends SimpleCommonFileInformationO
     4: SimpleCreatorInformationObjectType | CreatorInformationObjectType['key'],
 }
 
-// Only can use key if data were registered.... (0, 1, 2, 3,... are just Array key)
-export interface ImageInformation extends CommonFileInformationObjectType {
+export interface ImageInformationDataOfIndexKeyObjectType extends SimpleCommonFileInformationDataOfIndexKeyObjectType {
     1: PixelColorInformationObjectType[] | PixelColorInformationObjectType['key'][],
     // Width Information...
     2: number,
@@ -40,4 +39,14 @@ export interface ImageInformation extends CommonFileInformationObjectType {
     3: PixelColorInformationObjectType | PixelColorInformationObjectType['key'] | boolean,
     // You can fire device or alert police or many actions per unlicensed opened times... (violated after saw alert)
     4: CreatorInformationObjectType | CreatorInformationObjectType['key'],
+}
+
+export interface SimpleImageFileInformation extends SimpleCommonFileInformationObjectType {
+    // @ts-ignore
+    [indexKey: InformationObjectType['key']]: SimpleImageInformationDataOfIndexKeyObjectType
+}
+
+export interface ImageInformation extends CommonFileInformationObjectType {
+    // @ts-ignore
+    [indexKey: InformationObjectType['key']]: ImageInformationDataOfIndexKeyObjectType
 }
