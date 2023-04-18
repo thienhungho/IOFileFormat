@@ -12,15 +12,26 @@ import {
 import {
     TimeCounterDataInformationObjectType,
 } from "../DataType/TimeCounter/specification";
-import { SimpleImageFileInformation } from "../ImageFileFormat/specification";
-import { SimpleSoundInformation } from "../SoundFileFormat/specification";
+import { ImageInformation } from "../ImageFileFormat/specification";
+import { SoundInformation } from "../SoundFileFormat/specification";
+import {
+    NumberUnitInformationObjectType,
+    SimpleNumberUnitInformationObjectType
+} from "../DataType/NumberUnit/specification";
 
 export interface SimpleVideoInformationDataOfIndexKeyObjectType extends SimpleCommonFileInformationDataOfIndexKeyObjectType {
     1: {
-        frames: {
-            0: SimpleImageFileInformation[],
-            1?: SimpleSoundInformation[],
-            2: TimeCounterDataInformationObjectType
+        layers: {
+            // Frames
+            0: {
+                0: ImageInformation[],
+                1?: SoundInformation[],
+                // Edge....
+                2?: ImageInformation[],
+                3: TimeCounterDataInformationObjectType,
+            }[],
+            // Layer Identity...
+            1?: SimpleNumberUnitInformationObjectType | SimpleNumberUnitInformationObjectType['key'],
         }[],
     },
     // Total Video Duration...
@@ -38,10 +49,17 @@ export interface SimpleVideoInformation extends CommonFileInformationObjectType 
 
 export interface VideoInformationDataOfIndexKeyObjectType extends CommonFileInformationDataOfIndexKeyObjectType {
     1: {
-        frames: {
-            0: SimpleImageFileInformation[],
-            1?: SimpleSoundInformation[],
-            2: TimeCounterDataInformationObjectType
+        layers: {
+            // Frames
+            0: {
+                0: ImageInformation[],
+                1?: SoundInformation[],
+                // Edge....
+                2?: ImageInformation[],
+                3: TimeCounterDataInformationObjectType,
+            }[],
+            // Layer Identity...
+            1?: NumberUnitInformationObjectType | SimpleNumberUnitInformationObjectType['key'],
         }[],
     },
     // Total Video Duration...
