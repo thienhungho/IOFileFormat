@@ -55,6 +55,10 @@ export interface SoundVibrationUnitInformationObjectType extends InformationObje
 
 }
 
+export interface SimpleSoundVibrationUnitInformationObjectType extends InformationObjectType {
+
+}
+
 // Many speaker channels (split by range rates..) ... accept one version allowed high rates per....
 // Can use software to choice any range rates to speak...
 
@@ -66,15 +70,21 @@ export interface SoundVibrationUnitInformationCollectionObjectType extends Infor
         | SoundVibrationUnitWithTimeCounterInformationObjectType[]
 }
 
+export interface SimpleSoundVibrationUnitInformationCollectionObjectType extends InformationObjectType {
+    [index: number]: SimpleSoundVibrationUnitInformationObjectType[]
+        | SimpleSoundVibrationUnitInformationObjectType['key'][]
+        | SimpleSoundVibrationUnitWithTimeCounterInformationObjectType['key'][]
+        | SimpleSoundVibrationUnitWithTimeCounterInformationObjectType[]
+}
 
 export interface SimpleOneChannelSoundInformationDataOfIndexKeyObjectType extends SimpleCommonFileInformationDataOfIndexKeyObjectType {
-    1: SoundVibrationUnitInformationCollectionObjectType,
+    1: SimpleSoundVibrationUnitInformationCollectionObjectType,
     // Rate Range..
     10: SimpleSoundVibrationRateRangeInformationObjectType | SoundVibrationUnitWithRateRangeInformationObjectType['key'],
     // Counter...
     2: SimpleTimeCounterDataInformationObjectType,
     // Replace blank pixel to color...
-    3: SoundVibrationUnitInformationCollectionObjectType | boolean,
+    3: SimpleSoundVibrationUnitInformationCollectionObjectType | boolean,
     // You can fire or alert police or many actions per unlicensed opened times... (violated after saw alert)
     4: SimpleCreatorInformationObjectType | CreatorInformationObjectType['key'],
 }
@@ -159,5 +169,6 @@ export interface SoundInformationDataOfIndexKeyObjectType extends CommonFileInfo
 
 export interface SoundInformation extends CommonFileInformationObjectType {
     // @ts-ignore
-    [indexKey: InformationObjectType['key']]: SimpleSoundInformationDataOfIndexKeyObjectType
+    [indexKey: InformationObjectType['key']]: SoundInformationDataOfIndexKeyObjectType
 }
+
