@@ -19,7 +19,7 @@ export interface SimpleVideoInformationDataOfIndexKeyObjectType extends SimpleCo
     1: {
         frames: {
             0: SimpleImageFileInformation[],
-            1: SimpleSoundInformation[],
+            1?: SimpleSoundInformation[],
             2: TimeCounterDataInformationObjectType
         }[],
     },
@@ -40,7 +40,7 @@ export interface VideoInformationDataOfIndexKeyObjectType extends CommonFileInfo
     1: {
         frames: {
             0: SimpleImageFileInformation[],
-            1: SimpleSoundInformation[],
+            1?: SimpleSoundInformation[],
             2: TimeCounterDataInformationObjectType
         }[],
     },
